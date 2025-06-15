@@ -1,0 +1,41 @@
+# Node modules
+node_modules/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Environment variables
+.env
+
+# TypeScript output
+dist/
+build/
+*.tsbuildinfo
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# IDEs and editors
+.vscode/
+.idea/
+
+# Coverage and test output
+coverage/
+nyc_output/
+jest/
+
+# Database
+*.sqlite
+*.sqlite3
+*.db
+*.db3
+*.bak
+
+# Misc
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
