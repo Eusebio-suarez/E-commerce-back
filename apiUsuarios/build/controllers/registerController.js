@@ -9,20 +9,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.registrarUsuario = void 0;
+exports.registerUser = void 0;
 const registerModel_1 = require("../models/registerModel");
-const registrarUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const registerUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { nombre, correo, contraseña } = req.body;
         if (!nombre || !correo || !contraseña) {
             throw new Error("No se encuentran o faltan campos por llenar");
         }
-        const existeCorreo = yield (0, registerModel_1.validarCorreo)(correo);
+        const existeCorreo = yield (0, registerModel_1.validateEmail)(correo);
         if (existeCorreo) {
             res.status(409).json({ error: `El correo ${correo} ya existe. Inicie sesión.` });
             return;
         }
-        const usuario = yield (0, registerModel_1.crearUsuario)(nombre, correo, contraseña);
+        const usuario = yield (0, registerModel_1.createUser)(nombre, correo, contraseña);
         if (!usuario) {
             res.status(500).json({ error: "No se pudo crear el usuario. Intenta más tarde." });
             return;
@@ -35,4 +35,4 @@ const registrarUsuario = (req, res) => __awaiter(void 0, void 0, void 0, functio
         return;
     }
 });
-exports.registrarUsuario = registrarUsuario;
+exports.registerUser = registerUser;

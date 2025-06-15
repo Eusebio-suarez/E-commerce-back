@@ -1,7 +1,7 @@
 import { Request, RequestHandler, Response } from "express";
-import { crearUsuario, validarCorreo } from "../models/registerModel";
+import { createUser, validateEmail } from "../models/registerModel";
 
-export const registrarUsuario = async (req: Request, res: Response) => {
+export const registerUser = async (req: Request, res: Response) => {
   try {
     const { nombre, correo, contraseña } = req.body;
 
@@ -9,13 +9,13 @@ export const registrarUsuario = async (req: Request, res: Response) => {
       throw new Error("No se encuentran o faltan campos por llenar");
     }
 
-    const existeCorreo = await validarCorreo(correo);
+    const existeCorreo = await validateEmail(correo);
     if (existeCorreo) {
       res.status(409).json({ error: `El correo ${correo} ya existe. Inicie sesión.` });
       return 
     }
 
-    const usuario = await crearUsuario(nombre, correo, contraseña);
+    const usuario = await createUser(nombre, correo, contraseña);
     if (!usuario) {
       res.status(500).json({ error: "No se pudo crear el usuario. Intenta más tarde." });
       return 
