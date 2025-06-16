@@ -11,7 +11,7 @@ const logoutRoutes_1 = __importDefault(require("./routes/logoutRoutes"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 app.use(express_1.default.json());
 app.use((0, cookie_parser_1.default)());
 //usar las rutas registrar
