@@ -9,15 +9,22 @@ const registerRoutes_1 = __importDefault(require("./routes/registerRoutes"));
 const loginRoutes_1 = __importDefault(require("./routes/loginRoutes"));
 const logoutRoutes_1 = __importDefault(require("./routes/logoutRoutes"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
+const cors_1 = __importDefault(require("cors"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const PORT = process.env.PORT || 3000;
+// ✅ CORS configurado correctamente
+app.use((0, cors_1.default)({
+    origin: (origin, callback) => {
+        callback(null, true); // permite cualquier origen
+    },
+    credentials: true,
+}));
 app.use(express_1.default.json());
 app.use((0, cookie_parser_1.default)());
-//usar las rutas registrar
 app.use("/api/registrar", registerRoutes_1.default);
-//uar las rutas de login}
 app.use("/api/iniciarSesion", loginRoutes_1.default);
-//ruta para cerrar sesion
 app.use("/api/cerrarSesion", logoutRoutes_1.default);
-app.listen(PORT);
+app.listen(PORT, () => {
+    console.log(`✅ Servidor corriendo en el puerto ${PORT}`);
+});
