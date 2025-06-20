@@ -32,7 +32,7 @@ export const login = async (req:Request,res:Response)=>{
             httpOnly: true,
             maxAge: 3600000,
             sameSite: "none",
-            secure: true
+            secure: false
         });
 
         console.log(token)
