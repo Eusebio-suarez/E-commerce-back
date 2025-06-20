@@ -1,8 +1,9 @@
 import  express  from "express"
-import { addProduct } from "../controllers/addProductController"
+import { addProductController } from "../controllers/addProductController"
+import { verifyToken } from "../middlewares/verifytoken"
 
 const router = express.Router()
 
-router.get("/agregar",addProduct)
+router.post("/agregar",verifyToken,addProductController)
 
 export default router
