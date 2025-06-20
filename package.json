@@ -1,0 +1,45 @@
+{
+  "name": "e-commerce-back",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000E\u0000-\u0000c\u0000o\u0000m\u0000m\u0000e\u0000r\u0000c\u0000e\u0000-\u0000b\u0000a\u0000c\u0000k\u0000\r\u0000 \u0000",
+  "main": "index.js",
+  "scripts": {
+    "dev": "ts-node-dev src/index.ts",
+    "lint": "ts-standard",
+    "tsc": "tsc",
+    "start": "node build/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Eusebio-suarez/E-commerce-back.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Eusebio-suarez/E-commerce-back/issues"
+  },
+  "homepage": "https://github.com/Eusebio-suarez/E-commerce-back#readme",
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "ts-node-dev": "2.0.0",
+    "ts-standard": "12.0.2",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "eslint": "8.57.1",
+    "express": "5.1.0",
+    "mysql2": "3.14.1",
+    "npm": "11.4.2"
+  },
+  "eslintConfig": {
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    },
+    "extends": [
+      "./node_modules/ts-standard/eslintrc.json"
+    ]
+  }
+}
