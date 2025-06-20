@@ -22,12 +22,12 @@ const registerUser = (req, res) => __awaiter(void 0, void 0, void 0, function* (
             res.status(409).json({ error: `El correo ${correo} ya existe. Inicie sesión.` });
             return;
         }
-        const usuario = yield (0, registerModel_1.createUser)(nombre, correo, contraseña);
+        const usuario = yield (0, registerModel_1.createUserAndCar)(nombre, correo, contraseña);
         if (!usuario) {
             res.status(500).json({ error: "No se pudo crear el usuario. Intenta más tarde." });
             return;
         }
-        res.status(201).json({ mensaje: `Usuario ${nombre} registrado con éxito!` });
+        res.status(201).json({ mensaje: `Usuario ${nombre} registrado  con éxito!` });
         return;
     }
     catch (e) {

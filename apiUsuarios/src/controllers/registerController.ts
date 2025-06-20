@@ -1,5 +1,5 @@
 import { Request, RequestHandler, Response } from "express";
-import { createUser, validateEmail } from "../models/registerModel";
+import { createUserAndCar, validateEmail } from "../models/registerModel";
 
 export const registerUser = async (req: Request, res: Response) => {
   try {
@@ -15,12 +15,12 @@ export const registerUser = async (req: Request, res: Response) => {
       return 
     }
 
-    const usuario = await createUser(nombre, correo, contraseña);
+    const usuario = await createUserAndCar(nombre, correo, contraseña);
     if (!usuario) {
       res.status(500).json({ error: "No se pudo crear el usuario. Intenta más tarde." });
       return 
     }
-    res.status(201).json({ mensaje: `Usuario ${nombre} registrado con éxito!` });
+    res.status(201).json({ mensaje: `Usuario ${nombre} registrado  con éxito!` });
     return 
 
   } catch (e) {
