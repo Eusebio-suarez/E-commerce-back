@@ -20,12 +20,10 @@ export const createUserAndCar = async(nombre:string,correo:string,contraseña:st
         if(carrito){
             return resultado.affectedRows > 0;
         }
-
         //si no se creo el usuario o el carrito devuelve false
         else{
             return false
         }
-
     }
     catch(error){
         return(false)

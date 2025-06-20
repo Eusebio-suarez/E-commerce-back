@@ -27,10 +27,13 @@ export const login = async (req:Request,res:Response)=>{
         jwt.sign({nombre: usuario.nombre_usuario, correo: usuario.correo, rol: usuario.rol},SECRET_KEY,{
             expiresIn: "1h"
         })
-        res.cookie( "access_token" ,token,{
+
+        res.cookie("access_token", token, {
             httpOnly: true,
-            maxAge: 3600000
-        })
+            maxAge: 3600000,
+            sameSite: "none",
+            secure: true
+        });
 
         console.log(token)
         res.status(200).json({mensaje: `Login exitoso ${usuario.nombre_usuario}`})
