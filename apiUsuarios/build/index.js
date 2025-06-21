@@ -5,9 +5,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
-const registerRoutes_1 = __importDefault(require("./routes/registerRoutes"));
-const loginRoutes_1 = __importDefault(require("./routes/loginRoutes"));
-const logoutRoutes_1 = __importDefault(require("./routes/logoutRoutes"));
+const registerRoutes_1 = __importDefault(require("./routes/userRoutes/registerRoutes"));
+const loginRoutes_1 = __importDefault(require("./routes/userRoutes/loginRoutes"));
+const logoutRoutes_1 = __importDefault(require("./routes/userRoutes/logoutRoutes"));
+const addProductRoutes_1 = __importDefault(require("./routes/carRoutes/addProductRoutes"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const cors_1 = __importDefault(require("cors"));
 dotenv_1.default.config();
@@ -25,6 +26,7 @@ app.use((0, cookie_parser_1.default)());
 app.use("/api/registrar", registerRoutes_1.default);
 app.use("/api/iniciarSesion", loginRoutes_1.default);
 app.use("/api/cerrarSesion", logoutRoutes_1.default);
+app.use("/api/carrito", addProductRoutes_1.default);
 app.listen(PORT, () => {
     console.log(`✅ Servidor corriendo en el puerto ${PORT}`);
 });

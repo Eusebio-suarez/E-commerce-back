@@ -1,5 +1,5 @@
 import { Request, RequestHandler, Response } from "express";
-import { createUserAndCar, validateEmail } from "../models/registerModel";
+import { createUserAndCar, validateEmail } from "../../models/userModels/registerModel";
 
 export const registerUser = async (req: Request, res: Response) => {
   try {

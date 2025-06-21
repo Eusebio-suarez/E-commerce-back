@@ -1,8 +1,9 @@
 import express from "express"
 import dotenv from "dotenv"
-import registerRoutes from "./routes/registerRoutes";
-import loginRoutes from "./routes/loginRoutes"
-import logoutRoutes from "./routes/logoutRoutes"
+import registerRoutes from "./routes/userRoutes/registerRoutes";
+import loginRoutes from "./routes/userRoutes/loginRoutes"
+import logoutRoutes from "./routes/userRoutes/logoutRoutes"
+import addProductRoutes from "./routes/carRoutes/addProductRoutes";
 import cookieParser from "cookie-parser"
 import cors from "cors"
 
@@ -25,6 +26,9 @@ app.use(cookieParser())
 app.use("/api/registrar", registerRoutes)
 app.use("/api/iniciarSesion", loginRoutes)
 app.use("/api/cerrarSesion", logoutRoutes)
+
+app.use("/api/carrito",addProductRoutes)
+
 
 app.listen(PORT, () => {
   console.log(`✅ Servidor corriendo en el puerto ${PORT}`);

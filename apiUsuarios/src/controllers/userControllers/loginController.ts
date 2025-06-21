@@ -1,5 +1,5 @@
 import { Request,Response } from "express"
-import { validateUser } from "../models/loginModel"
+import { validateUser } from "../../models/userModels/loginModel"
 import dotenv from "dotenv"
 import jwt from "jsonwebtoken"
 import cookieParser from "cookie-parser"
@@ -24,7 +24,7 @@ export const login = async (req:Request,res:Response)=>{
         }
 
         const token =
-        jwt.sign({nombre: usuario.nombre_usuario, correo: usuario.correo, rol: usuario.rol},SECRET_KEY,{
+        jwt.sign({ id: usuario.id_usuario, nombre: usuario.nombre_usuario, correo: usuario.correo, rol: usuario.rol},SECRET_KEY,{
             expiresIn: "1h"
         })
 
@@ -35,7 +35,6 @@ export const login = async (req:Request,res:Response)=>{
             secure: false
         });
 
-        console.log(token)
         res.status(200).json({mensaje: `Login exitoso ${usuario.nombre_usuario}`})
     }
 

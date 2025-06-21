@@ -1,9 +1,9 @@
 import { ResultSetHeader } from "mysql2"
-import coneccion from "./db"
-import { Usuario } from "../types/usuario"
+import coneccion from "../../config/db"
+import { user } from "../../types/usertypes"
 
 export const validateEmail = async (correo:string):Promise<boolean>=>{
-    const [rows] = await coneccion.query<Usuario[]>("SELECT * FROM usuarios WHERE correo = ?",[correo])
+    const [rows] = await coneccion.query<user[]>("SELECT * FROM usuarios WHERE correo = ?",[correo])
     return rows.length > 0
 }
 
