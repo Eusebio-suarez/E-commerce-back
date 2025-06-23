@@ -12,13 +12,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.eliminateProduct = void 0;
-const db_1 = __importDefault(require("../../config/db"));
-const eliminateRegiters_1 = require("../../utility/eliminateRegiters");
-const eliminateProduct = (carrito_id, id_libro, cantidad) => __awaiter(void 0, void 0, void 0, function* () {
-    const [rows] = yield db_1.default.query("UPDATE `carrito_productos` SET `cantidad` = `cantidad` - ? WHERE (`libro_id` = ?) AND (`carrito_id` = ?)", [cantidad, id_libro, carrito_id]);
-    //eliminar los registros que en la catidad sea menor o igual a 0
-    (0, eliminateRegiters_1.eliminateRegisters)();
-    return rows.affectedRows > 0;
+exports.eliminateRegisters = void 0;
+const db_1 = __importDefault(require("../config/db"));
+const eliminateRegisters = () => __awaiter(void 0, void 0, void 0, function* () {
+    db_1.default.query("DELETE FROM carrito_productos WHERE cantidad < 1");
 });
-exports.eliminateProduct = eliminateProduct;
+exports.eliminateRegisters = eliminateRegisters;
