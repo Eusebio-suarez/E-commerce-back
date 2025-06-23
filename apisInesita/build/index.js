@@ -9,6 +9,7 @@ const registerRoutes_1 = __importDefault(require("./routes/userRoutes/registerRo
 const loginRoutes_1 = __importDefault(require("./routes/userRoutes/loginRoutes"));
 const logoutRoutes_1 = __importDefault(require("./routes/userRoutes/logoutRoutes"));
 const addProductRoutes_1 = __importDefault(require("./routes/carRoutes/addProductRoutes"));
+const eliminateProductRoutes_ts_1 = __importDefault(require("./routes/carRoutes/eliminateProductRoutes.ts"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const cors_1 = __importDefault(require("cors"));
 dotenv_1.default.config();
@@ -27,6 +28,7 @@ app.use("/api/registrar", registerRoutes_1.default);
 app.use("/api/iniciarSesion", loginRoutes_1.default);
 app.use("/api/cerrarSesion", logoutRoutes_1.default);
 app.use("/api/carrito", addProductRoutes_1.default);
+app.use("/api/carrito", eliminateProductRoutes_ts_1.default);
 app.listen(PORT, () => {
     console.log(`✅ Servidor corriendo en el puerto ${PORT}`);
 });

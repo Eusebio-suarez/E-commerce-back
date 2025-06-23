@@ -1,7 +1,7 @@
 import { Response } from "express"
 import { AuthenticatedRequest } from "../../middlewares/verifytoken"
-import { addProduct, searchCar, updateCuantity, validatProduct } from "../../models/carModels/addProductModel"
-import coneccion from "../../config/db"
+import { addProduct, updateCuantity, validatProduct } from "../../models/carModels/addProductModel"
+import { searchCar } from "../../utility/searchCar"
 
 export const addProductController = async (req: AuthenticatedRequest, res: Response)=>{
 

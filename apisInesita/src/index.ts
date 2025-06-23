@@ -4,6 +4,7 @@ import registerRoutes from "./routes/userRoutes/registerRoutes";
 import loginRoutes from "./routes/userRoutes/loginRoutes"
 import logoutRoutes from "./routes/userRoutes/logoutRoutes"
 import addProductRoutes from "./routes/carRoutes/addProductRoutes";
+import eliminateProductRouter from "./routes/carRoutes/eliminateProductRoutes.ts"
 import cookieParser from "cookie-parser"
 import cors from "cors"
 
@@ -28,6 +29,7 @@ app.use("/api/iniciarSesion", loginRoutes)
 app.use("/api/cerrarSesion", logoutRoutes)
 
 app.use("/api/carrito",addProductRoutes)
+app.use("/api/carrito",eliminateProductRouter)
 
 
 app.listen(PORT, () => {

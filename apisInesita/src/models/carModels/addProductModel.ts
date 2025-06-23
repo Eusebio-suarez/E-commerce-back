@@ -12,18 +12,6 @@ export const addProduct = async(carrito_id: number,libro_id: number,cantidad: nu
     return rows.affectedRows > 0
 }
 
-export const searchCar = async(userId:number)=>{
-    const [carrito] = await coneccion.query("SELECT id FROM carrito WHERE user_id = ?",userId);
-    
-    // Verifica si se encontró un carrito
-    if ((carrito as any[]).length === 0) {
-        return null;
-    }
-    
-    // Devuelve el id del carrito
-    return (carrito as any)[0].id;
-}
-
 export const updateCuantity = async(carrito_id:number,id_libro:number,cantidad:number)=>{
     const [rows] = await coneccion.query<ResultSetHeader>("UPDATE `carrito_productos` SET `cantidad` = `cantidad` + ? WHERE (`libro_id` = ?) AND (`carrito_id` = ?)",[cantidad,id_libro,carrito_id])
     return rows.affectedRows > 0

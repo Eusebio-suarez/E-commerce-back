@@ -11,6 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.addProductController = void 0;
 const addProductModel_1 = require("../../models/carModels/addProductModel");
+const searchCar_1 = require("../../utility/searchCar");
 const addProductController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { idProducto, cantidad } = req.body;
@@ -23,7 +24,7 @@ const addProductController = (req, res) => __awaiter(void 0, void 0, void 0, fun
             throw new Error("faltan campos por llenar");
         }
         // buscar el id del carrito que le pertenece a el usuario
-        const carrito_id = yield (0, addProductModel_1.searchCar)(req.user.id);
+        const carrito_id = yield (0, searchCar_1.searchCar)(req.user.id);
         if (!carrito_id) {
             res.status(400).json({ mensaje: "no se encontro el carrito" });
             return;
