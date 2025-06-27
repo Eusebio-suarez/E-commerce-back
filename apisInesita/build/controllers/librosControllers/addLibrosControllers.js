@@ -48,6 +48,10 @@ const addLibrosControllers = (req, res) => __awaiter(void 0, void 0, void 0, fun
         }
         // validar si el libro ya estas añadido
         const libroAdded = yield (0, addLibrosModel_1.validatLibro)(nombre_libro);
+        if (libroAdded) {
+            res.status(400).json({ mensaje: "El libro ya esta añadido" });
+            return;
+        }
         //si no se a añadido el libro se crea un nuevo registro del libro
         if (!libroAdded) {
             const added = yield (0, addLibrosModel_1.addLibro)(nombre_libro, precio, descripcion, stock, estado, foto);
