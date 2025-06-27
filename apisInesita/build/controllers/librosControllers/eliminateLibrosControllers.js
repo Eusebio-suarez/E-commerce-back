@@ -25,11 +25,6 @@ const eliminateLibrosControllers = (req, res) => __awaiter(void 0, void 0, void 
             res.status(400).json({ mensaje: "No se encontro el usuario" });
             return;
         }
-        //validar si el usuario es adminq 
-        if (!req.user.isAdmin) {
-            res.status(403).json({ mensaje: "No tienes permisos para eliminar un libro" });
-            return;
-        }
         const eliminated = yield (0, eliminateLibrosModels_1.eliminateLibro)(id_libro);
         if (!eliminated) {
             res.status(400).json({ mensaje: "No se pudo eliminar el libro" });
