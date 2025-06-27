@@ -46,6 +46,10 @@ export const addLibrosControllers = async (req: AuthenticatedRequest, res: Respo
         // validar si el libro ya estas añadido
         const libroAdded = await validatLibro(nombre_libro )
 
+        if(libroAdded){
+            res.status(400).json({mensaje:"El libro ya esta añadido"})
+            return
+        }
         //si no se a añadido el libro se crea un nuevo registro del libro
         if(!libroAdded){
             const added = await addLibro(nombre_libro, precio, descripcion, stock, estado, foto);
