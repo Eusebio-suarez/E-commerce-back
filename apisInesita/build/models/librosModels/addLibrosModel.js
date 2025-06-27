@@ -14,8 +14,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.addLibro = exports.validatLibro = void 0;
 const db_1 = __importDefault(require("../../config/db"));
-const validatLibro = (libro_id) => __awaiter(void 0, void 0, void 0, function* () {
-    const [rows] = yield db_1.default.query("SELECT * FROM libros_recetas WHERE libro_id = ?", [libro_id]);
+const validatLibro = (nombre_libro) => __awaiter(void 0, void 0, void 0, function* () {
+    const [rows] = yield db_1.default.query("SELECT * FROM libros_recetas WHERE nombre_libro = ?", [nombre_libro]);
     return rows.length > 0;
 });
 exports.validatLibro = validatLibro;

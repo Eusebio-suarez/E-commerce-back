@@ -2,8 +2,8 @@ import { ResultSetHeader, RowDataPacket } from "mysql2"
 import coneccion from "../../config/db"
 
 
-export const validatLibro = async(id_libro:number):Promise<boolean>=>{
-    const [rows] = await coneccion.query<RowDataPacket[]>("SELECT * FROM libros_recetas WHERE id_libro = ?",[id_libro])
+export const validatLibro = async(nombre_libro:string):Promise<boolean>=>{
+    const [rows] = await coneccion.query<RowDataPacket[]>("SELECT * FROM libros_recetas WHERE nombre_libro = ?",[nombre_libro])
 
     return rows.length > 0
 }

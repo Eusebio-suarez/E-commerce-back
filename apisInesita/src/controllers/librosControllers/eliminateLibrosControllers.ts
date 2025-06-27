@@ -18,12 +18,7 @@ export const eliminateLibrosControllers= async(req:AuthenticatedRequest,res:Resp
             res.status(400).json({mensaje: "No se encontro el usuario"})
             return
         }
-        //validar si el usuario es adminq 
-        if(!req.user.isAdmin){
-            res.status(403).json({mensaje: "No tienes permisos para eliminar un libro"})
-            return
-        }   
-       
+        
         const eliminated = await eliminateLibro(id_libro)
         
         if(!eliminated){
