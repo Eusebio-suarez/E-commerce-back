@@ -2,7 +2,7 @@ import { Request,Response } from "express"
 import { validateUser } from "../../models/userModels/loginModel"
 import dotenv from "dotenv"
 import jwt from "jsonwebtoken"
-import cookieParser from "cookie-parser"
+import cookieParser from "cookie-parser"    
 dotenv.config()
 
 const SECRET_KEY=process.env.SECRET_KEY||""
