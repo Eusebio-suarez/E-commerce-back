@@ -13,50 +13,19 @@ exports.updateLibrosControllers = void 0;
 const updateLibrosModels_1 = require("../../models/librosModels/updateLibrosModels");
 const updateLibrosControllers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        const id_libro = Number(req.params.id_libro); // suponiendo que lo recibes como parte de la URL: /libros/:id_libro
         const { nombre_libro, precio, descripcion, stock, estado, foto } = req.body;
-        //verificar que los datos del usuario estan definidos en la req
-        if (!req.body.nombre_libro) {
-            throw new Error("No se encontró el nombre del libro en la query");
+        const actualizado = yield (0, updateLibrosModels_1.updateLibro)(id_libro, nombre_libro, precio, descripcion, stock, estado, foto);
+        if (actualizado) {
+            res.status(200).json({ mensaje: 'Libro actualizado con éxito' });
         }
-        //verificar los datos
-        if (!nombre_libro || !precio || !descripcion || !stock || !estado || !foto) {
-            throw new Error("faltan campos por llenar");
-        }
-        //validar que el stock sea un numero positivo
-        if (stock < 0) {
-            res.status(400).json({ mensaje: "el stock debe ser un numero positivo" });
-            return;
-        }
-        //validar que el precio sea un numero positivo
-        if (precio < 0) {
-            res.status(400).json({ mensaje: "el precio debe ser un numero positivo" });
-            return;
-        }
-        //validar que el estado sea un numero
-        if (estado < 0 || estado > 1) {
-            res.status(400).json({ mensaje: "el estado debe ser un numero entre 0 y 1" });
-            return;
-        }
-        // validar si el libro ya estas añadido
-        const libroUpdate = yield (0, updateLibrosModels_1.validatLibro)(nombre_libro);
-        if (libroUpdate) {
-            res.status(400).json({ mensaje: "El libro ya esta actualizado" });
-            return;
-        }
-        //si no se a añadido el libro se crea un nuevo registro del libro
-        if (!libroUpdate) {
-            const added = yield (0, updateLibrosModels_1.updateLibro)(nombre_libro, precio, descripcion, stock, estado, foto);
-            //validar si se agrego el libro
-            if (!added) {
-                res.status(400).json({ mensaje: "Error al actualizar el libro" });
-                return;
-            }
-            res.status(201).json({ mensaje: "libro fue actualizado correctamente" });
-            return;
+        else {
+            res.status(404).json({ mensaje: 'Libro no encontrado' });
         }
     }
-    catch (e) {
-        res.status(400).json({ mensaje: e instanceof Error ? e.message : "Error desconocido" });
+    catch (error) {
+        console.error(error);
+        res.status(500).json({ mensaje: 'Error al actualizar el libro' });
     }
 });
 exports.updateLibrosControllers = updateLibrosControllers;

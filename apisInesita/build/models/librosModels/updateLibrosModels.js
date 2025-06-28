@@ -19,8 +19,8 @@ const validatLibro = (nombre_libro) => __awaiter(void 0, void 0, void 0, functio
     return rows.length > 0;
 });
 exports.validatLibro = validatLibro;
-const updateLibro = (nombre_libro, precio, descripcion, stock, estado, foto) => __awaiter(void 0, void 0, void 0, function* () {
-    const [rows] = yield db_1.default.query("UPDATE libros_recetas SET nombre_libro = ?, precio = ?, descripcion = ?, stock = ?, estado = ?, foto = ? WHERE id_libro = ?", [nombre_libro, precio, descripcion, stock, estado, foto]);
+const updateLibro = (id_libro, nombre_libro, precio, descripcion, stock, estado, foto) => __awaiter(void 0, void 0, void 0, function* () {
+    const [rows] = yield db_1.default.query("UPDATE libros_recetas SET nombre_libro = ?, precio = ?, descripcion = ?, stock = ?, estado = ?, foto = ? WHERE id_libro = ?", [nombre_libro, precio, descripcion, stock, estado, foto, id_libro]);
     return rows.affectedRows > 0;
 });
 exports.updateLibro = updateLibro;
