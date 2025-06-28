@@ -9,6 +9,7 @@ import getProductsRoutes from "./routes/carRoutes/getProductsRoutes"
 import addLibrosRoutes from "./routes/librosRoutes/addLibrosRoutes"
 import getLibrosRoutes from "./routes/librosRoutes/getLibrosRoutes"
 import eliminateLibrosRoutes from "./routes/librosRoutes/eliminateLibrosRoutes"
+import updateLibrosRoutes  from "./routes/librosRoutes/updateLibrosRoutes";
 
 
 import cookieParser from "cookie-parser"
@@ -42,6 +43,7 @@ app.use("/api/carrito",getProductsRoutes)
 app.use("/api/nuevo_libro", addLibrosRoutes)
 app.use("/api/mostrar", getLibrosRoutes)
 app.use("/api/eliminar", eliminateLibrosRoutes)
+app.use("/api/actualizar", updateLibrosRoutes)
 
 
 app.listen(PORT, () => {

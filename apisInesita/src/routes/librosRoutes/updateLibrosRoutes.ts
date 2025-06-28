@@ -1,0 +1,15 @@
+import  express  from "express"
+import { updateLibrosControllers } from "../../controllers/librosControllers/updateLibrosControllers"
+import { verifyToken } from "../../middlewares/verifytoken"
+import { isAdmin } from "../../middlewares/isAdmin"
+
+
+
+const router = express.Router()
+router.put('/', verifyToken, isAdmin, updateLibrosControllers)
+export default router   
+
+
+// This code defines a route for updating book details in an Express application.
+// It uses the PUT method to handle requests at the root path ('/') of the `lib         
+
