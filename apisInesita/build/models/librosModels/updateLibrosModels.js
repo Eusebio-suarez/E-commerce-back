@@ -20,7 +20,7 @@ const validatLibro = (nombre_libro) => __awaiter(void 0, void 0, void 0, functio
 });
 exports.validatLibro = validatLibro;
 const updateLibro = (nombre_libro, precio, descripcion, stock, estado, foto) => __awaiter(void 0, void 0, void 0, function* () {
-    const [rows] = yield db_1.default.query("UPDATE `libros_recetas` SET `nombre_libro` = '?', `precio` = '?', `descripcion` = '?', `stock` = '?', `estado` = '?', `foto` = '?' WHERE (`id_libro` = '11')", [nombre_libro, precio, descripcion, stock, estado, foto]);
+    const [rows] = yield db_1.default.query("UPDATE libros_recetas SET nombre_libro = ?, precio = ?, descripcion = ?, stock = ?, estado = ?, foto = ? WHERE id_libro = ?", [nombre_libro, precio, descripcion, stock, estado, foto]);
     return rows.affectedRows > 0;
 });
 exports.updateLibro = updateLibro;
