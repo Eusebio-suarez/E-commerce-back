@@ -11,7 +11,6 @@ export const validatLibro = async(nombre_libro:string):Promise<boolean>=>{
 
 
 export const updateLibro = async(nombre_libro:string, precio:number, descripcion:string, stock:number, estado:number, foto:string):Promise<boolean>=>{
-    const [rows] = await coneccion.query<ResultSetHeader>("UPDATE `libros_recetas` SET `nombre_libro` = '?', `precio` = '?', `descripcion` = '?', `stock` = '?', `estado` = '?', `foto` = '?' WHERE (`id_libro` = '11')",
-         [nombre_libro, precio, descripcion, stock, estado, foto])
+    const [rows] = await coneccion.query<ResultSetHeader>("UPDATE libros_recetas SET nombre_libro = ?, precio = ?, descripcion = ?, stock = ?, estado = ?, foto = ? WHERE id_libro = ?", [nombre_libro, precio, descripcion, stock, estado, foto])
     return rows.affectedRows > 0
 }
