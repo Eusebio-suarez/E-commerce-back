@@ -6,6 +6,12 @@ import logoutRoutes from "./routes/userRoutes/logoutRoutes"
 import addProductRoutes from "./routes/carRoutes/addProductRoutes";
 import eliminateProductRouter from "./routes/carRoutes/eliminateProductRoutes.ts"
 import getProductsRoutes from "./routes/carRoutes/getProductsRoutes"
+import addLibrosRoutes from "./routes/librosRoutes/addLibrosRoutes"
+import getLibrosRoutes from "./routes/librosRoutes/getLibrosRoutes"
+import eliminateLibrosRoutes from "./routes/librosRoutes/eliminateLibrosRoutes"
+import updateLibrosRoutes  from "./routes/librosRoutes/updateLibrosRoutes";
+
+
 import cookieParser from "cookie-parser"
 import cors from "cors"
 
@@ -32,6 +38,12 @@ app.use("/api/cerrarSesion", logoutRoutes)
 app.use("/api/carrito",addProductRoutes)
 app.use("/api/carrito",eliminateProductRouter)
 app.use("/api/carrito",getProductsRoutes)
+
+//rutas para libros
+app.use("/api/nuevo_libro", addLibrosRoutes)
+app.use("/api/mostrar", getLibrosRoutes)
+app.use("/api/eliminar", eliminateLibrosRoutes)
+app.use("/api/actualizar", updateLibrosRoutes)
 
 
 app.listen(PORT, () => {
