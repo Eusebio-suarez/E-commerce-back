@@ -3,6 +3,7 @@ import dotenv from "dotenv"
 import registerRoutes from "./routes/userRoutes/registerRoutes";
 import loginRoutes from "./routes/userRoutes/loginRoutes"
 import logoutRoutes from "./routes/userRoutes/logoutRoutes"
+import getUserRoutes from "./routes/userRoutes/getUserRoutes"
 import addProductRoutes from "./routes/carRoutes/addProductRoutes";
 import eliminateProductRouter from "./routes/carRoutes/eliminateProductRoutes.ts"
 import getProductsRoutes from "./routes/carRoutes/getProductsRoutes"
@@ -36,6 +37,7 @@ app.use(cookieParser())
 app.use("/api/registrar", registerRoutes)
 app.use("/api/iniciarSesion", loginRoutes)
 app.use("/api/cerrarSesion", logoutRoutes)
+app.use("/api/usuarios",getUserRoutes)
 
 app.use("/api/carrito",addProductRoutes)
 app.use("/api/carrito",eliminateProductRouter)
