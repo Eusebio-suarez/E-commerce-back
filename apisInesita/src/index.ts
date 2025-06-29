@@ -10,6 +10,7 @@ import addLibrosRoutes from "./routes/librosRoutes/addLibrosRoutes"
 import getLibrosRoutes from "./routes/librosRoutes/getLibrosRoutes"
 import eliminateLibrosRoutes from "./routes/librosRoutes/eliminateLibrosRoutes"
 import updateLibrosRoutes  from "./routes/librosRoutes/updateLibrosRoutes";
+import createOrdenRoutes from "./routes/ordesRoutes/createOrdenRoutes"
 
 
 import cookieParser from "cookie-parser"
@@ -45,6 +46,8 @@ app.use("/api/mostrar", getLibrosRoutes)
 app.use("/api/eliminar", eliminateLibrosRoutes)
 app.use("/api/actualizar", updateLibrosRoutes)
 
+//rutas para las ordenes
+app.use("/api/ordenes",createOrdenRoutes)
 
 app.listen(PORT, () => {
   console.log(`✅ Servidor corriendo en el puerto ${PORT}`);
