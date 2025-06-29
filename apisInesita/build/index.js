@@ -16,6 +16,7 @@ const getLibrosRoutes_1 = __importDefault(require("./routes/librosRoutes/getLibr
 const eliminateLibrosRoutes_1 = __importDefault(require("./routes/librosRoutes/eliminateLibrosRoutes"));
 const updateLibrosRoutes_1 = __importDefault(require("./routes/librosRoutes/updateLibrosRoutes"));
 const createOrdenRoutes_1 = __importDefault(require("./routes/ordesRoutes/createOrdenRoutes"));
+const getOrdenRoutes_1 = __importDefault(require("./routes/ordesRoutes/getOrdenRoutes"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const cors_1 = __importDefault(require("cors"));
 dotenv_1.default.config();
@@ -43,6 +44,7 @@ app.use("/api/eliminar", eliminateLibrosRoutes_1.default);
 app.use("/api/actualizar", updateLibrosRoutes_1.default);
 //rutas para las ordenes
 app.use("/api/ordenes", createOrdenRoutes_1.default);
+app.use("/api/ordenes", getOrdenRoutes_1.default);
 app.listen(PORT, () => {
     console.log(`✅ Servidor corriendo en el puerto ${PORT}`);
 });
