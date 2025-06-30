@@ -11,6 +11,7 @@ const coneccion = promise_1.default.createPool({
     "host": process.env.HOST,
     "user": process.env.USER,
     "password": process.env.PASSWORD,
-    "database": process.env.DATA_BASE
+    "database": process.env.DATA_BASE,
+    multipleStatements: true
 });
 exports.default = coneccion;
