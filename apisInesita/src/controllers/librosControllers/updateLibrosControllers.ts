@@ -1,12 +1,16 @@
 import { AuthenticatedRequest } from "../../middlewares/verifytoken";
 import { updateLibro } from "../../models/librosModels/updateLibrosModels";
-import { Response } from "express"
+import { Response } from "express";
 
 
-export const updateLibrosControllers = async (req: AuthenticatedRequest, res: Response)=>{
+export const updateLibrosControllers = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+  try {
+    const id_libro = Number(req.params.id_libro);
 
-    try {
-    const id_libro = Number(req.params.id_libro); // suponiendo que lo recibes como parte de la URL: /libros/:id_libro
+    if (isNaN(id_libro)) {
+      res.status(400).json({ mensaje: "ID de libro inválido" });
+      return;
+    }
 
     const {
       nombre_libro,
@@ -14,8 +18,13 @@ export const updateLibrosControllers = async (req: AuthenticatedRequest, res: Re
       descripcion,
       stock,
       estado,
-      foto
+      foto,
     } = req.body;
+
+    if (!nombre_libro ||precio === undefined ||!descripcion ||stock === undefined ||estado === undefined ||!foto) {
+      res.status(400).json({ mensaje: "Faltan datos obligatorios" });
+      return;
+    }
 
     const actualizado = await updateLibro(
       id_libro,
@@ -28,13 +37,12 @@ export const updateLibrosControllers = async (req: AuthenticatedRequest, res: Re
     );
 
     if (actualizado) {
-      res.status(200).json({ mensaje: 'Libro actualizado con éxito' });
+      res.status(200).json({ mensaje: "Libro actualizado con éxito" });
     } else {
-      res.status(404).json({ mensaje: 'Libro no encontrado' });
+      res.status(404).json({ mensaje: "Libro no encontrado" });
     }
-
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ mensaje: 'Error al actualizar el libro' });
+    console.error("Error al actualizar libro:", error);
+    res.status(500).json({ mensaje: "Error interno del servidor" });
   }
 };
