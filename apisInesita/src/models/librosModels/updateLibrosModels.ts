@@ -1,16 +1,34 @@
-import { ResultSetHeader, RowDataPacket } from "mysql2"
+import { ResultSetHeader } from "mysql2"
 import coneccion from "../../config/db"
+import { RowDataPacket } from 'mysql2';
 
+export const getLibroById = async (id_libro: number): Promise<any | null> => {
+    const [rows] = await coneccion.query<RowDataPacket[]>(
+        "SELECT * FROM libros_recetas WHERE id_libro = ?",
+        [id_libro]
+    );
 
+    // Verificamos si existe al menos un libro
+    if (rows.length === 0) {
+        return null;
+    }
 
-export const validatLibro = async(nombre_libro:string):Promise<boolean>=>{
-    const [rows] = await coneccion.query<RowDataPacket[]>("SELECT * FROM libros_recetas WHERE nombre_libro = ?",[nombre_libro])
+    return rows[0]; // Retorna el primer libro encontrado
+};
+export const updateLibro = async (
+    id_libro: number,
+    nombre_libro: string,
+    precio: number,
+    descripcion: string,
+    stock: number,
+    estado: number,
+    foto: string
+): Promise<boolean> => {
+    const [result] = await coneccion.query<ResultSetHeader>(
+        "UPDATE libros_recetas SET nombre_libro = ?, precio = ?, descripcion = ?, stock = ?, estado = ?, foto = ? WHERE id_libro = ?",
+        [nombre_libro, precio, descripcion, stock, estado, foto, id_libro]
+    );
 
-    return rows.length > 0
-}
+    return result.affectedRows > 0; // Retorna true si se actualizó al menos un registro
+};
 
-
-export const updateLibro = async(id_libro: number, nombre_libro:string, precio:number, descripcion:string, stock:number, estado:number, foto:string):Promise<boolean>=>{
-    const [rows] = await coneccion.query<ResultSetHeader>("UPDATE libros_recetas SET nombre_libro = ?, precio = ?, descripcion = ?, stock = ?, estado = ?, foto = ? WHERE id_libro = ?", [nombre_libro, precio, descripcion, stock, estado, foto, id_libro])
-    return rows.affectedRows > 0
-}

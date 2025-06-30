@@ -12,15 +12,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateLibro = exports.validatLibro = void 0;
+exports.updateLibro = exports.getLibroById = void 0;
 const db_1 = __importDefault(require("../../config/db"));
-const validatLibro = (nombre_libro) => __awaiter(void 0, void 0, void 0, function* () {
-    const [rows] = yield db_1.default.query("SELECT * FROM libros_recetas WHERE nombre_libro = ?", [nombre_libro]);
-    return rows.length > 0;
+const getLibroById = (id_libro) => __awaiter(void 0, void 0, void 0, function* () {
+    const [rows] = yield db_1.default.query("SELECT * FROM libros_recetas WHERE id_libro = ?", [id_libro]);
+    // Verificamos si existe al menos un libro
+    if (rows.length === 0) {
+        return null;
+    }
+    return rows[0]; // Retorna el primer libro encontrado
 });
-exports.validatLibro = validatLibro;
+exports.getLibroById = getLibroById;
 const updateLibro = (id_libro, nombre_libro, precio, descripcion, stock, estado, foto) => __awaiter(void 0, void 0, void 0, function* () {
-    const [rows] = yield db_1.default.query("UPDATE libros_recetas SET nombre_libro = ?, precio = ?, descripcion = ?, stock = ?, estado = ?, foto = ? WHERE id_libro = ?", [nombre_libro, precio, descripcion, stock, estado, foto, id_libro]);
-    return rows.affectedRows > 0;
+    const [result] = yield db_1.default.query("UPDATE libros_recetas SET nombre_libro = ?, precio = ?, descripcion = ?, stock = ?, estado = ?, foto = ? WHERE id_libro = ?", [nombre_libro, precio, descripcion, stock, estado, foto, id_libro]);
+    return result.affectedRows > 0; // Retorna true si se actualizó al menos un registro
 });
 exports.updateLibro = updateLibro;
