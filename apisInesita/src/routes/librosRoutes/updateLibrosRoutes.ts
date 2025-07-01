@@ -7,7 +7,7 @@ import { isAdmin } from "../../middlewares/isAdmin"
 const router = express.Router();
 
 // Ruta con el ID del libro a actualizar
-router.put('/:id_libro', verifyToken, isAdmin, updateLibrosControllers);
+router.put('/libros/:id_libro', verifyToken, isAdmin, updateLibrosControllers);
 
 export default router; 
 

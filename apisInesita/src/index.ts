@@ -47,7 +47,7 @@ app.use("/api/carrito",getProductsRoutes)
 app.use("/api/nuevo_libro", addLibrosRoutes)
 app.use("/api/mostrar", getLibrosRoutes)
 app.use("/api/eliminar", eliminateLibrosRoutes)
-app.use("/api/actualizar", updateLibrosRoutes)
+app.use("/api", updateLibrosRoutes)
 
 //rutas para las ordenes
 app.use("/api/ordenes",createOrdenRoutes)
