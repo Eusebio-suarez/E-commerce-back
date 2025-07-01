@@ -3,7 +3,7 @@ import { updateLibro } from "../../models/librosModels/updateLibrosModels";
 import { Response } from "express";
 
 
-export const updateLibrosControllers = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+export const updateLibrosControllers = async (req: AuthenticatedRequest, res: Response): Promise <void> => {
   try {
     const id_libro = Number(req.params.id_libro);
 
