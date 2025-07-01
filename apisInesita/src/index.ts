@@ -43,7 +43,7 @@ app.use("/api/carrito",getProductsRoutes)
 app.use("/api/nuevo_libro", addLibrosRoutes)
 app.use("/api/mostrar", getLibrosRoutes)
 app.use("/api/eliminar", eliminateLibrosRoutes)
-app.use("/api/actualizar", updateLibrosRoutes)
+app.use("/api", updateLibrosRoutes)
 
 
 app.listen(PORT, () => {
