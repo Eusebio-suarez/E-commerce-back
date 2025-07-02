@@ -29,10 +29,10 @@ export const login = async (req:Request,res:Response)=>{
         })
 
         res.cookie("access_token", token, {
-            httpOnly: true,
-            maxAge: 3600000,
-            sameSite: "none",
-            secure: false
+        httpOnly: true,
+        maxAge: 3600000,
+        sameSite: "lax",
+        secure: false
         });
 
         res.status(200).json({mensaje: `Login exitoso ${usuario.nombre_usuario}`})
