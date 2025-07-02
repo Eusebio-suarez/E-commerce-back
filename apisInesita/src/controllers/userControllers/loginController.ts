@@ -31,8 +31,8 @@ export const login = async (req:Request,res:Response)=>{
         res.cookie("access_token", token, {
         httpOnly: true,
         maxAge: 3600000,
-        sameSite: "lax",
-        secure: false
+        sameSite: "none", // 👈 OBLIGATORIO para permitir envío entre dominios
+        secure: true      // 👈 OBLIGATORIO si tu backend está en HTTPS (Render lo es)
         });
 
         res.status(200).json({mensaje: `Login exitoso ${usuario.nombre_usuario}`})
