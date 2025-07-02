@@ -25,9 +25,7 @@ const PORT = process.env.PORT || 3000
 
 // ✅ CORS configurado correctamente
 app.use(cors({
-  origin: (origin, callback) => {
-    callback(null, true); // permite cualquier origen
-  },
+  origin: "http://localhost:5173", // 👈 tu frontend
   credentials: true,
 }));
 
