@@ -13,10 +13,13 @@ import eliminateLibrosRoutes from "./routes/librosRoutes/eliminateLibrosRoutes"
 import updateLibrosRoutes  from "./routes/librosRoutes/updateLibrosRoutes";
 import createOrdenRoutes from "./routes/ordesRoutes/createOrdenRoutes"
 import getOrdenRoutes from "./routes/ordesRoutes/getOrdenRoutes"
-
-
 import cookieParser from "cookie-parser"
 import cors from "cors"
+
+const allowedOrigins = [
+  'http://localhost:5173', // para desarrollo local
+  'https://e-commerce-front-0yhc.onrender.com' // para producción
+];
 
 dotenv.config()
 
@@ -25,8 +28,14 @@ const PORT = process.env.PORT || 3000
 
 // ✅ CORS configurado correctamente
 app.use(cors({
-  origin: "http://localhost:5173", // 👈 tu frontend
-  credentials: true,
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Origen no permitido por CORS'));
+    }
+  },
+  credentials: true
 }));
 
 app.use(express.json())
