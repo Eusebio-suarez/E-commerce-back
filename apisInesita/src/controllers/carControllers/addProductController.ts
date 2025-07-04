@@ -3,7 +3,8 @@ import { AuthenticatedRequest } from "../../middlewares/verifytoken"
 import { addProduct, updateCuantity, validatProduct } from "../../models/carModels/addProductModel"
 import { searchCar } from "../../utility/searchCar"
 
-export const addProductController = async (req: AuthenticatedRequest, res: Response)=>{
+export const 
+addProductController = async (req: AuthenticatedRequest, res: Response)=>{
 
     try{
         const{idProducto,cantidad} = req.body
