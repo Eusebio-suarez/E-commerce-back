@@ -35,7 +35,7 @@ export const login = async (req:Request,res:Response)=>{
         secure: true      // 👈 OBLIGATORIO si tu backend está en HTTPS (Render lo es)
         });
 
-        res.status(200).json({nombre:usuario.nombre_usuario,rol:usuario.rol})
+        res.status(200).json({rol:usuario.rol})
     }
 
     catch(e){
